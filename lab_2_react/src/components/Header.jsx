@@ -1,4 +1,4 @@
-export default function Header({ name, position, city, socials }) {
+export default function Header({ name, position, city, socials, theme, onToggleTheme }) {
   return (
     <header className="relative px-8 py-10 bg-gradient-to-r from-indigo-600/20 via-violet-600/10 to-transparent border-b border-slate-700/50">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-500/5 via-transparent to-transparent" />
@@ -14,7 +14,7 @@ export default function Header({ name, position, city, socials }) {
             📍 {city}
           </span>
         </p>
-        <nav className="mt-6">
+        <nav className="mt-6 flex flex-wrap items-center justify-between gap-4">
           <ul className="flex flex-wrap gap-3">
             {socials.map((link, index) => (
               <li key={index}>
@@ -29,6 +29,19 @@ export default function Header({ name, position, city, socials }) {
               </li>
             ))}
           </ul>
+
+          {onToggleTheme && (
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-600/70 bg-slate-900/60 px-4 py-1.5 text-xs font-medium text-slate-200 shadow-sm transition-colors hover:border-indigo-500/70 hover:bg-slate-800/80"
+            >
+              <span role="img" aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}>
+                {theme === 'dark' ? '🌞' : '🌙'}
+              </span>
+              <span>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
+            </button>
+          )}
         </nav>
       </div>
     </header>

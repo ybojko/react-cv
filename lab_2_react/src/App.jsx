@@ -1,9 +1,44 @@
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Languages from './components/Languages';
+import Reviews from './components/Reviews';
+import ContactForm from './components/ContactForm';
+import SystemInfoFooter from './components/SystemInfoFooter';
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') {
+      return 'light';
+    }
+
+    try {
+      const stored = window.localStorage.getItem('app-theme');
+      if (stored === 'light' || stored === 'dark') {
+        return stored;
+      }
+    } catch {
+      // ignore read errors
+    }
+
+    const hour = new Date().getHours();
+    return hour >= 7 && hour < 21 ? 'light' : 'dark';
+  });
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+    try {
+      window.localStorage.setItem('app-theme', theme);
+    } catch {
+      // ignore write errors
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   const resumeData = {
     name: "Yurii Boiko",
     position: "DevOps engineer",
@@ -51,26 +86,40 @@ function App() {
     ]
   };
 
+  const shellClasses =
+    'min-h-screen font-sans antialiased transition-colors duration-300';
+  const backgroundClasses =
+    theme === 'dark'
+      ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-slate-100'
+      : 'bg-slate-100 text-slate-900';
+
+  const cardClasses =
+    theme === 'dark'
+      ? 'bg-slate-800/60 backdrop-blur-xl rounded-2xl shadow-2xl shadow-indigo-950/50 border border-slate-700/50 overflow-hidden'
+      : 'bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden';
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-slate-100 font-sans antialiased">
+    <div className={`${shellClasses} ${backgroundClasses}`}>
       <div className="max-w-3xl mx-auto px-6 py-12 md:py-16">
-        <div className="bg-slate-800/60 backdrop-blur-xl rounded-2xl shadow-2xl shadow-indigo-950/50 border border-slate-700/50 overflow-hidden">
-          <Header 
-            name={resumeData.name} 
-            position={resumeData.position} 
-            city={resumeData.city} 
-            socials={resumeData.socials} 
+        <div className={cardClasses}>
+          <Header
+            name={resumeData.name}
+            position={resumeData.position}
+            city={resumeData.city}
+            socials={resumeData.socials}
+            theme={theme}
+            onToggleTheme={toggleTheme}
           />
-          
+
           <main className="px-8 pb-8 space-y-8">
-            <Skills skills={resumeData.skills} />
-            <Experience items={resumeData.experience} />
-            <Languages languages={resumeData.languages} />
+            <Skills skills={resumeData.skills} theme={theme} />
+            <Experience items={resumeData.experience} theme={theme} />
+            <Reviews theme={theme} />
+            <Languages languages={resumeData.languages} theme={theme} />
+            <ContactForm theme={theme} />
           </main>
 
-          <footer className="px-8 py-4 border-t border-slate-700/50 bg-slate-900/40">
-            <p className="text-sm text-slate-400 text-center">Last updated: 02.2026</p>
-          </footer>
+          <SystemInfoFooter theme={theme} />
         </div>
       </div>
     </div>

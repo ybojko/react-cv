@@ -25,10 +25,14 @@ function ExperienceItem({ company, role, period, details }) {
   );
 }
 
-export default function Experience({ items }) {
+export default function Experience({ items, theme }) {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-white flex items-center gap-2 after:h-px after:flex-1 after:bg-gradient-to-r after:from-indigo-500/50 after:to-transparent">
+      <h2
+        className={`mb-4 text-2xl font-bold flex items-center gap-2 after:h-px after:flex-1 after:bg-gradient-to-r after:from-indigo-500/50 after:to-transparent ${
+          theme === 'dark' ? 'text-white' : 'text-slate-900'
+        }`}
+      >
         <span className="text-indigo-400">💼</span> Experience
       </h2>
       <div className="space-y-4">
