@@ -7,7 +7,7 @@ function App() {
   const resumeData = {
     name: "Yurii Boiko",
     position: "DevOps engineer",
-    city: "Львів",
+    city: "Lviv",
     socials: [
       { name: "LinkedIn", url: "https://www.linkedin.com/in/yurii-boiko-secure/" },
       { name: "GitHub", url: "https://github.com/ybojko" },
@@ -52,23 +52,27 @@ function App() {
   };
 
   return (
-    <div className="resume-container">
-      <Header 
-        name={resumeData.name} 
-        position={resumeData.position} 
-        city={resumeData.city} 
-        socials={resumeData.socials} 
-      />
-      
-      <main>
-        <Skills skills={resumeData.skills} />
-        <Experience items={resumeData.experience} />
-        <Languages languages={resumeData.languages} />
-      </main>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-slate-100 font-sans antialiased">
+      <div className="max-w-3xl mx-auto px-6 py-12 md:py-16">
+        <div className="bg-slate-800/60 backdrop-blur-xl rounded-2xl shadow-2xl shadow-indigo-950/50 border border-slate-700/50 overflow-hidden">
+          <Header 
+            name={resumeData.name} 
+            position={resumeData.position} 
+            city={resumeData.city} 
+            socials={resumeData.socials} 
+          />
+          
+          <main className="px-8 pb-8 space-y-8">
+            <Skills skills={resumeData.skills} />
+            <Experience items={resumeData.experience} />
+            <Languages languages={resumeData.languages} />
+          </main>
 
-      <footer>
-        <p>Last updated: 02.2026</p>
-      </footer>
+          <footer className="px-8 py-4 border-t border-slate-700/50 bg-slate-900/40">
+            <p className="text-sm text-slate-400 text-center">Last updated: 02.2026</p>
+          </footer>
+        </div>
+      </div>
     </div>
   );
 }

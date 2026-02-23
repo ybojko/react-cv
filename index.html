@@ -2,92 +2,114 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yurii Boiko</title>
+    <link rel="stylesheet" href="styles.css">
+    <div class="theme-switch-wrapper">
+        <button id="theme-toggle" class="theme-btn">
+            <span id="theme-icon">🌙</span> Switch theme
+        </button>
+    </div>
 </head>
 <body>
-
-    <header>
-        <h1>Yurii Boiko</h1>
-        <p>DevOps engeneer</p>
-        <p><strong>City</strong> Львів</p>
-        
-        <nav>
-            <ul>
-                <li><a href="https://www.linkedin.com/in/yurii-boiko-secure/" target="_blank">LinkedIn</a></li>
-                <li><a href="https://github.com/ybojko" target="_blank">GitHub</a></li>
-                <li><a href="https://t.me/yBojk0" target="_blank">Telegram</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-
-        <section>
-            <h2>Skills</h2>
-            <ul>
-                <li>Cloud (GCP, AWS)</li>
-                <li>Infrastructure as a code</li>
-                <li>Containerization(Docker)</li>
-                <li>Git</li>
-                <li>Windows, Linux</li>
-                <li>Monitoring&Observability</li>
-                <li>CI/CD(Jenkins, Gitlab CI, GitHub actions)</li>
-                <li>Networking</li>
-                <li>Scripting basics(python)</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Experience</h2>
-            <article>
-                <h3>Insiders</h3>
-                <p><em>DevOps | 02.25 - Now</em></p>
-                <p>-App deployment for production environments:</p>
-                <p>-Automation of updates(building CI/CD pipelines)</p>
-                <p>Transforming infrastructure into code(terraform)</p>
-                <p>Troubleshooting issues with containers, images, EC2s etc</p>
-                    
-
-            </article>
-            <article>
-                <h3>Pet-Project</h3>
-                <p>- Virtual machine management (manually and via Vagrant)</p>
-                <p>- IaC: Terraform, several attempts at Ansible</p>
-                <p>- Pipelines: self-hosted Jenkins, or using GitLab CI agents and GitHub Actions</p>
-                <p>- Monitoring: Grafana, Prometheus</p>
-                <p>- Cloudflare</p>
-                <p>Project was deployed at a group of EC2s, regularly updated. Currently not hosted anywhere, but infrastructure escribed https://github.com/ybojko/registrar-2</p>
-                    
-
-            </article>
-            <article>
-                <h3>BEST Lviv</h3>
-                <p><em>Content Responsible | 05-11.25</em></p>
-                <ul>
-                    <li>Creating content for the BEST CTF 2025 cybersecurity competition.</li>
-                    <li>Designing, creating, supporting and customizing the infrastructure for the event on GCP.</li>
-                    <li>Managing a team of 5 people to achieve the best results.</li>
-                </ul>
-            </article>
-
+    <div class="container">
+        <header>
+            <h1>Yurii Boiko</h1>
+            <p class="subtitle">DevOps Engineer</p>
+            <p><strong>City:</strong> Lviv</p>
             
+            <nav>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/yurii-boiko-secure/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/ybojko" target="_blank">GitHub</a></li>
+                    <li><a href="https://t.me/yBojk0" target="_blank">Telegram</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="skills">
+                <h2>Skills</h2>
+                <ul class="skills-grid">
+                    <li>Cloud (GCP, AWS)</li>
+                    <li>Infrastructure as a Code</li>
+                    <li>Containerization (Docker)</li>
+                    <li>Git</li>
+                    <li>Windows, Linux</li>
+                    <li>Monitoring & Observability</li>
+                    <li>CI/CD (Jenkins, GitLab CI, GitHub Actions)</li>
+                    <li>Networking</li>
+                    <li>Scripting basics (Python)</li>
+                </ul>
+            </section>
+
+            <section id="experience">
+                <h2>Experience</h2>
+                <article>
+                    <h3>Insiders</h3>
+                    <p class="meta"><em>DevOps | 02.25 - Now</em></p>
+                    <p>- App deployment for production environments</p>
+                    <p>- Automation of updates (building CI/CD pipelines)</p>
+                    <p>- Transforming infrastructure into code (Terraform)</p>
+                    <p>- Troubleshooting issues with containers, images, EC2s etc</p>
+                </article>
+
+                <article>
+                    <h3>Pet-Project</h3>
+                    <p>- Virtual machine management (manually and via Vagrant)</p>
+                    <p>- IaC: Terraform, Ansible</p>
+                    <p>- Pipelines: Jenkins, GitLab CI, GitHub Actions</p>
+                    <p>- Monitoring: Grafana, Prometheus</p>
+                    <p>Project described: <a href="https://github.com/ybojko/registrar-2">GitHub</a></p>
+                </article>
+
+                <article>
+                    <h3>BEST Lviv</h3>
+                    <p class="meta"><em>Content Responsible | 05-11.25</em></p>
+                    <ul>
+                        <li>Creating content for the BEST CTF 2025 competition.</li>
+                        <li>Designing infrastructure on GCP.</li>
+                        <li>Managing a team of 5 people.</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section id="languages">
+                <h2>Languages</h2>
+                <dl>
+                    <dt>Ukrainian</dt>
+                    <dd>Native</dd>
+                    <dt>English</dt>
+                    <dd>Intermediate (B1)</dd>
+                </dl>
+            </section>
+        </main>
+
+        <section id="testimonials">
+            <h2>Feedbacks</h2>
+            <div id="comments-container">Please wait...</div>
         </section>
-
-        <section>
-            <h2>Languages</h2>
-            <dl>
-                <dt>Ukrainian</dt>
-                <dd>Native</dd>
-                
-                <dt>English</dt>
-                <dd>Intermediate (B1)</dd>
-            </dl>
-        </section>
-    </main>
-
-    <footer>
-        <p>Last updated: 02.2026 </p>
-    </footer>
-
+        
+        <div id="feedback-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Send feedback</h2>
+                <form action="https://formspree.io/f/maqdlevv" method="POST">
+                    <input type="text" name="name" placeholder="Yur name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="tel" name="phone" placeholder="Phone" required>
+                    <textarea name="message" placeholder="Content" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        
+        <footer id="main-footer">
+            <p>Last updated: 02.2026</p>
+            <div id="browser-info" style="font-size: 0.7rem; margin-top: 10px; color: #666;"></div>
+        </footer>
+        
+        <script src="script.js"></script>
+    </div>
 </body>
 </html>
