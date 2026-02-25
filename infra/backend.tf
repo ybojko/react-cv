@@ -64,7 +64,7 @@ resource "aws_security_group_rule" "allow_http" {
 
 resource "aws_instance" "backend_server" {
   ami                  = "ami-073130f74f5ffb161"
-  instance_type        = "t2.micro"
+  instance_type        = "t3.micro"
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
   key_name             = "koth-admin-key"
   
