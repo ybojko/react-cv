@@ -7,7 +7,7 @@ jobs:
   test-connection:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to AWS EC2
+    - name: Debug SSH and Login
       env:
         EC2_HOST: ${{ vars.EC2_BACKEND_HOST }}
         EC2_USER: ${{ vars.EC2_USER || 'ubuntu' }}
@@ -15,16 +15,15 @@ jobs:
         AWS_REGION: ${{ vars.AWS_REGION }}
         ECR_REGISTRY: ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com
       run: |
-        # 1. Готуємо ключ
         echo "$SSH_KEY_BASE64" | base64 --decode > ec2_key.pem
         chmod 600 ec2_key.pem
 
-        # 2. Тестуємо SSH та логін в ECR
-        ssh -i ec2_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST "bash -s" <<EOF
-          echo "Connected as: \$(whoami)"
+        ssh -i ec2_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST "bash -s" <<'EOF'
+          set -e
+          echo "Connected as: $(whoami)"
           echo "Testing Docker..."
           docker ps
           echo "Testing AWS CLI & ECR Login..."
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+          aws ecr get-login-password --region ${{ vars.AWS_REGION }} | docker login --username AWS --password-stdin ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com
           echo "Login successful!"
-EOF
+        EOF
